@@ -1,0 +1,280 @@
+
+*, *::after, *::before{
+   box-sizing: border-box !important;
+}
+
+:root {
+  --primary: #007bff;
+  --indigo: #6610f2;
+  --purple: #9b479f;
+  --pink: #e83e8c;
+  --danger: #d9230f;
+  --warning: #d9831f;
+  --yellow: #ffc107;
+  --success: #469408;
+  --teal: #20c997;
+  --info: #029acf;
+  --black: #000;
+  --white: #fff;
+  --gray: #777;
+}
+
+body{
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  min-height: 100vh !important;
+  background-color: #000000;
+}
+
+#root {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  min-height: 100vh !important;
+}
+
+.navbar{
+  width: 100%;
+  padding: 15px 0;
+}
+.navbar .navbar-nav{
+  display: flex;
+  background: linear-gradient(180deg, #05225E 0%, #295591 100%);  
+  margin: 0;
+}
+.navbar .navbar-nav .nav-item{
+  display: flex;
+  margin: 0 0 0 2rem;
+  justify-content: flex-start;
+  width: 100%;
+  padding: .2rem;
+}
+.navbar .navbar-nav .nav-item .nav-link, .cart-icon{
+  color: white;
+  fill: white !important;
+}
+
+.nav-brand img{
+  width: 75px;
+}
+.cart-icon{
+  fill: var(--primary);
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.admin-icon-container{
+  top: 24px;
+  right: 80px;
+}
+
+
+/** Since we are not using BS5 anchor tags we need a way for hover effect, 
+ ** React Link doesn't provide hover effect, so we make our own! */
+.link{
+  color: var(--black)
+}
+.link:hover {
+  color: var(--primary) !important;
+}
+
+
+
+/****** MAIN CONTAINER ******/
+.main-container{
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column !important;
+  justify-content: space-between;
+  /* min-height: 900px; */
+  background-color: rgb(255, 255, 255);
+  padding: 0 0 30px 0;
+}
+.main-container h1{
+  padding: 20px 0;
+  color: var(--white);
+  background: linear-gradient(180deg, #05225E 0%, #295591 100%);
+}
+
+
+/****** Page Title & Algolia Searchbox ******/
+.ais-SearchBox{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+} 
+.ais-SearchBox-form{
+   height: 37px;
+   /* outline: 2px solid green */
+} 
+.ais-SearchBox-input::placeholder{
+   font-size: 18px;
+} 
+.ais-SearchBox-input{
+   height: 37px;
+   font-size: 18px;
+   padding: 0 0 0 5px;
+} 
+.ais-SearchBox-submit{
+  width: 37px;
+  height: 37px;
+  background-color: var(--primary) !important;
+  border: none;
+} 
+.ais-SearchBox-submitIcon{
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  padding: 0 0 3px 0;
+} 
+.ais-SearchBox-reset{
+  width: 37px;
+  height: 37px;
+  background-color: var(--yellow) !important;
+  border: none;
+}
+.ais-SearchBox-resetIcon{
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  padding: 0 0 3px 0;
+}
+
+.hits-container{
+  width: 100%;
+  margin: 0 auto;
+}
+.ais-Hits-list{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  margin: 0 auto;
+}
+.ais-Hits-item{
+  margin: 1rem auto !important;
+  list-style-type: none;
+  width: 100%;
+  min-width: 350px;
+  max-width: 350px;
+}
+/* ol class="ais-Hits-list
+<li class="ais-Hits-item">
+<div class="hit product-card-container d-flex flex-wrap justify-content-around w-100 gap-3">
+<div class="card bg-dark col-12 col-lg-5"><div class="card-body text-white">
+<h4 class="card-title">Headphones</h4>
+<p class="card-text">Noise-cancelling headphones</p>
+<p class="card-text text-info fs-5">$199.99</p>
+<a class="btn btn-primary w-100 fw-semibold">ADD TO CART</a> */ */
+
+
+
+
+/****** Product Cards ******/
+.main-container .product-card-container .card{
+  max-width: 350px !important;
+}
+.card{
+  max-width: 350px !important;
+  min-height: 450px;
+}
+
+/****** FOOTER ******/
+.footer{
+  width: 100%;
+  min-height: 100px;
+  gap: 15px !important;
+}
+.footer .footer-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: calc(25% - 11px);
+}
+
+.footer .slogan .slogan-text{
+  max-width: 340px;
+  text-align: center;
+}
+.footer .footer-section img{
+  width: 100%;
+  min-width: 60px;
+  max-width: 110px;
+}
+.footer .footer-section p{
+  text-align: justify;
+  margin: 0;
+}
+.social-icons a img{
+    width: 37px !important;
+    border-radius: 50%;
+}
+.social-icons svg {
+  fill: rgb(211, 211, 211);
+  height: 30px;
+}
+.social-icons a svg:hover {
+   fill: var(--hover-link-color) !important;
+}
+
+
+/***********************************************/
+/**************** MEDIA QUERIES ****************/
+/***********************************************/
+@media screen and (max-width: 576px) {
+
+}
+  
+@media screen and (min-width: 550px) {
+    /* MODAL */
+    .modal{
+        max-width: 100%;
+        width: 100%;
+        transform: translateX(0%) !important;
+        left: 0;
+    }
+}
+  
+@media only screen and (min-width: 768px) {
+    .footer .slogan .slogan-text{
+      max-width: 590px;
+    }
+}
+  
+@media only screen and (min-width: 992px) {
+    .navbar .navbar-nav{
+      background: transparent;  
+      margin: 0;
+    }
+    .navbar .navbar-nav .nav-item{
+      margin: 0;
+      width: auto;
+      padding: 0;
+    }
+    .navbar .navbar-nav .nav-item .nav-link, .cart-icon{
+      color: inherit;
+      fill: var(--primary) !important
+    }
+    .footer{
+      flex: 0;
+      height: 200px;
+    }
+
+}
+  
+@media only screen and (min-width: 1220px) {
+
+}
+
+
