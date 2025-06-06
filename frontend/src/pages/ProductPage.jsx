@@ -1,4 +1,5 @@
-// Components
+// ProductPage.jsx
+
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
 import Searchbox from "../components/Searchbox"
@@ -23,6 +24,9 @@ function ProductPage() {
 }
 
 export default ProductPage
+
+
+
 
 
 

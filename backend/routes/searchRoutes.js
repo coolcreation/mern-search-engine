@@ -3,7 +3,7 @@ import meiliClient from "../meiliClient.js";
 
 const router = express.Router();
 
-// GET /api/search?q=...
+// GET /api/search?q='typed-search-of-some-kind'
 router.get("/", async (req, res) => {
   const query = req.query.q || "";
 
@@ -14,7 +14,9 @@ router.get("/", async (req, res) => {
       limit: 20,
     });
 
-    res.json(result); // returns { products, offset, limit, etc  }
+    // Send back only the relevant part
+    res.json({ products: result.hits });
+    
   } catch (error) {
     console.error("Meilisearch error:", error.message);
     res.status(500).json({ error: "Search failed" });

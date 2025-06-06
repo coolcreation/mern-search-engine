@@ -1,3 +1,5 @@
+// Searchbox.jsx
+
 import { useState } from 'react';
 import useProductsSearch from '../hooks/useProductSearch'; // Custom hook
 import ProductCard from './ProductCard.jsx';
@@ -28,10 +30,10 @@ export default function Searchbox() {
   }
 
   return (
-    <div className="search-container">
+    <div className="search-container p-2">
       <input
         type="search"
-        className="form-control my-3"
+        className="col-12 col-lg-4 col-xl-3 mb-3"
         placeholder="Search products..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -66,3 +68,5 @@ export default function Searchbox() {
     </div>
   );
 }
+
+

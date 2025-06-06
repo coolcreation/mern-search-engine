@@ -1,3 +1,4 @@
+// useProductsSearch.js
 // This is just a helper function (a "hook") your component can use — like a reusable search
 
 import { useState, useEffect } from "react";

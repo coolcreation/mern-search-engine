@@ -1,3 +1,5 @@
+// ProductCard.jsx
+
 import React, { useState } from 'react';
 
 function ProductCard({ product, handleProductAdded }) {
@@ -62,6 +64,9 @@ function ProductCard({ product, handleProductAdded }) {
 }
 
 export default ProductCard;
+
+
+
 
 
 /***********************************************************************

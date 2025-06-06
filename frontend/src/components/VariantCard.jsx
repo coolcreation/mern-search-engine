@@ -1,3 +1,4 @@
+// VariantCard.jsx 
 
 function VariantCard({ product, handleProductAdded }) {
 

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import connectToDatabase from "./database.js";      // MongoDB connection
 
 import { MeiliSearch } from 'meilisearch'           // Meilisearch object
-import syncProducts from './syncMeilisearch.js';    // MeiliSearch connection
+import syncProducts from './syncMeiliSearch.js';    // MeiliSearch connection
 
 // Route Imports
 import cartRoutes from "./routes/cartRoutes.js"
@@ -37,6 +37,7 @@ const client = new MeiliSearch({
 async function startServer() {
   try {
     await connectToDatabase();  // connect to MongoDB
+    console.log("➡️ Syncing products to Meilisearch...");
     await syncProducts();       // Initial sync to Meilisearch (not CRUD updates)
     
     app.listen(PORT, () => {
