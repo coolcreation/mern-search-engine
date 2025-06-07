@@ -1,10 +1,10 @@
+// server.js (Revised)
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectToDatabase from "./database.js";      // MongoDB connection
-
-import { MeiliSearch } from 'meilisearch'           // Meilisearch object
-import syncProducts from './syncMeiliSearch.js';    // MeiliSearch connection
+import connectToDatabase from "./database.js";
+import syncProducts from './syncMeiliSearch.js';
+import client from './meiliClient.js'; // This imports the Meilisearch client instance
 
 // Route Imports
 import cartRoutes from "./routes/cartRoutes.js"
@@ -20,33 +20,42 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
- 
+
 // Routes
 app.use("/cart", cartRoutes)
 app.use("/products", productRoutes)
 app.use("/users", usersRoutes)
 app.use("/api/search", searchRoutes);
 
-// Use Meilisearch object as `client`
-const client = new MeiliSearch({
-  host: process.env.MEILI_HOST,
-  apiKey: process.env.MEILI_MASTER_KEY
-})
+// The `client` object is already imported from meiliClient.js
+// No need to re-initialize here unless you want a separate instance
+// console.log(client); // You can keep this for debugging the client config
 
-// Start function to connect DB, sync, and start server
-async function startServer() {
+async function main() {
   try {
-    await connectToDatabase();  // connect to MongoDB
-    console.log("➡️ Syncing products to Meilisearch...");
-    await syncProducts();       // Initial sync to Meilisearch (not CRUD updates)
-    
+    // 1. Connect to MongoDB (can be awaited as it's usually fast)
+    await connectToDatabase();
+    console.log("Successfully connected to MongoDB!");
+
+    // 2. Start the Express server FIRST
+    // This allows Render to detect an open port and mark the service as live.
     app.listen(PORT, () => {
       console.log(`Server is running at http://localhost:${PORT}`);
     });
+
+    // 3. Trigger Meilisearch sync in the background
+    // We await it here so the `startServer` function waits for it to complete.
+    // If this is a very long operation, you might consider not awaiting it
+    // or running it as a separate worker service on Render.
+    console.log("➡️ Syncing products to Meilisearch...");
+    await syncProducts();
+    console.log("✅ Meilisearch sync operation completed (or encountered an error).");
+
   } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
+    console.error('🚨 Failed during server startup or product sync:', error);
+    process.exit(1); // Exit if critical startup or sync fails
   }
 }
 
-startServer();
+// Call the main async function to start the application
+main();
