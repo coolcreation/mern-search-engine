@@ -6,7 +6,8 @@ dotenv.config();
 const MASTER_KEY = process.env.MEILI_MASTER_KEY
 
 const client = new MeiliSearch({
-    host: 'http://localhost:7700', // Replace with your Meilisearch host
+    // host: 'http://localhost:7700', // For local development
+    host: 'https://collab-ecommerce-meili-proxy.onrender.com', // Meilisearch hosted on Render
     apiKey: `${MASTER_KEY}`,  // Replace with your master key or an API key
 });
 
