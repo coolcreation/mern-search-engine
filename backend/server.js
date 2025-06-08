@@ -57,5 +57,4 @@ async function main() {
   }
 }
 
-// Call the main async function to start the application
 main();
