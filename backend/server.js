@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectToDatabase from "./database.js";
 import syncProducts from './syncMeiliSearch.js';
-import client from './meiliClient.js'; // This imports the Meilisearch client instance
+// import client from './meiliClient.js'; // This imports the Meilisearch client instance
 
 // Route Imports
 import cartRoutes from "./routes/cartRoutes.js"
@@ -18,8 +18,20 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 // Middleware
-app.use(cors());
 app.use(express.json());
+
+const corsOptions = {
+  origin: [
+    'https://mern-search-frontend.vercel.app', // connect frontend Securely!
+    'http://localhost:3000',
+    'http://localhost:5173'
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
+
 
 // Routes
 app.use("/cart", cartRoutes)
