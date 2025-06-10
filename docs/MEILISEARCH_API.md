@@ -309,9 +309,7 @@ const response = await axios.post(
 * Easy to switch to Meilisearch Cloud later if needed
 * You own the infrastructure — no hacks, no localhost dependencies
 
----
 
-Would you like a template for the backend search route and frontend changes to connect this all cleanly?
 
 
 

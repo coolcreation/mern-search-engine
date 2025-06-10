@@ -12,7 +12,7 @@ const syncProducts = async () => {
       if (err.code === 'index_already_exists') {
         console.log('Index already exists');
       } else {
-        throw err; // rethrow unexpected errors
+        throw err;  
       }
     }
   
